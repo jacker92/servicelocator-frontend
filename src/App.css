@@ -1,8 +1,12 @@
 .App {
     text-align: center;
-    min-width: 50%;
-    max-width: 500px;
     margin: auto;
+}
+
+.SearchForm {
+    max-width: 80%;
+    margin: auto;
+    padding-bottom: 20px;
 }
 
 h1 {
