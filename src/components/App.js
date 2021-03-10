@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container } from 'react-bootstrap';
+import React, { useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Container } from 'react-bootstrap'
 import SearchForm from './SearchForm'
 import ServiceList from './ServiceList'
 import '../App.css'
@@ -18,7 +18,7 @@ const App = () => {
         <ServiceList setServices={setServices} services={services}/>
       </Container>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
