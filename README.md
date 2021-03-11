@@ -8,8 +8,8 @@ Service locator consists of following services:
 - [Redis](https://hub.docker.com/_/redis)
 
 ## Prerequisites for local deployment
-- [Docker](https://docs.docker.com/engine/install/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
+- [Docker](https://docs.docker.com/engine/install/)
 
 ## How to deploy locally
 1. Clone the project and cd to app directory

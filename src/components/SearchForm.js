@@ -7,12 +7,13 @@ const SearchForm = ({ setServices }) => {
 
   const executeSearch = async (e) => {
     e.preventDefault()
+    setSearchTerm('')
+
     if(!searchTerm) {
       return
     }
 
     const response = await getServices(searchTerm)
-    setSearchTerm('')
     setServices(response.data.map(x => (
       {
         id: x.id,
@@ -28,12 +29,12 @@ const SearchForm = ({ setServices }) => {
   return (
     <div className="SearchForm">
       <Form >
-        <Form.Label htmlFor="inlineFormInputName2" srOnly>
+        <Form.Label htmlFor="searchInput" srOnly>
                     Address, Postal code etc.
         </Form.Label>
         <Form.Control
           className="mb-2 mr-sm-2"
-          id="inlineFormInputName2"
+          id="searchInput"
           placeholder="Address, Postal code etc."
           onChange={(e) => setSearchTerm(e.target.value)}
           value={searchTerm}
