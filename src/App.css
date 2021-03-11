@@ -1,5 +1,4 @@
 .App {
-    text-align: center;
     margin: auto;
 }
 
@@ -11,4 +10,8 @@
 
 h1 {
     padding-bottom: 10px;
+}
+
+h1, .SearchForm {
+    text-align: center;
 }

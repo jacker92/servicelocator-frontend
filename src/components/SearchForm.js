@@ -9,11 +9,13 @@ const SearchForm = ({ setServices }) => {
     e.preventDefault()
     setSearchTerm('')
 
-    if(!searchTerm) {
+    if (!searchTerm) {
       return
     }
 
     const response = await getServices(searchTerm)
+
+    console.log(response.data)
     setServices(response.data.map(x => (
       {
         id: x.id,
@@ -21,7 +23,10 @@ const SearchForm = ({ setServices }) => {
         info: x.connections[0] && x.connections[0].name.fi,
         email: x.email,
         website: x.www && x.www.fi,
-        location: x.location.coordinates
+        location: x.location.coordinates,
+        zipcode: x.address_zip,
+        street: x.street_address,
+        description: x.description
       }
     )))
   }
@@ -30,7 +35,7 @@ const SearchForm = ({ setServices }) => {
     <div className="SearchForm">
       <Form >
         <Form.Label htmlFor="searchInput" srOnly>
-                    Address, Postal code etc.
+          Address, Postal code etc.
         </Form.Label>
         <Form.Control
           className="mb-2 mr-sm-2"
@@ -44,7 +49,7 @@ const SearchForm = ({ setServices }) => {
           type="submit"
           onClick={(e) => executeSearch(e)}
           className="mb-2">
-            Search
+          Search
         </Button>
       </Form>
     </div>
