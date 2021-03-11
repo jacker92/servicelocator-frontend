@@ -3,10 +3,13 @@ import { useParams, Link } from 'react-router-dom'
 import { Table, Container } from 'react-bootstrap'
 
 const SingleServiceView = ({ services }) => {
+  console.log('User parmars', useParams())
   const { id } = useParams()
 
-  const service = services.find(p => p.id === Number(id))
+  const service = services && services.find(p => p.id === Number(id))
+
   console.log(services, service)
+
   let serviceData
 
   if (service) {
@@ -37,7 +40,7 @@ const SingleServiceView = ({ services }) => {
             </tr>
             <tr>
               <td>Street address</td>
-              <td>{service.street.fi}</td>
+              <td>{service.street && service.street.fi}</td>
             </tr>
             <tr>
               <td>Zipcode</td>
