@@ -56,7 +56,7 @@ const ServiceList = ({ services, setServices }) => {
   }
 
   return (
-    <Table striped bordered hover>
+    <Table id="serviceTable" striped bordered hover>
       <thead>
         <tr>
           <th onClick={sortByName}><a href="/#">Name</a></th>

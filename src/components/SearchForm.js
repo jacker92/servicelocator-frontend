@@ -39,8 +39,12 @@ const SearchForm = ({ setServices }) => {
           onChange={(e) => setSearchTerm(e.target.value)}
           value={searchTerm}
         />
-        <Button type="submit" onClick={(e) => executeSearch(e)} className="mb-2">
-                    Search
+        <Button
+          id="searchButton"
+          type="submit"
+          onClick={(e) => executeSearch(e)}
+          className="mb-2">
+            Search
         </Button>
       </Form>
     </div>
