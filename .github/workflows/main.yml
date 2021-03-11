@@ -23,6 +23,8 @@ jobs:
         run: npm test
       - name: E2E tests
         uses: cypress-io/github-action@v2
+        env:
+          REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
         with:
           command: npm run test:e2e
           start: npm run start
