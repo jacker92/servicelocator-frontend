@@ -3,7 +3,13 @@ services:
   frontend:
     build: .
     ports:
-      - "3000:3000"
+     - "3000:3000"
+    environment:
+     - REACT_APP_BACKEND_URL=localhost:3001/api/helsinkiservices?query=
+  backend:
+    build: https://github.com/jacker92/servicelocator-backend.git
+    ports:
+      - "3001:3001"
   redis:
     image: "redis:alpine"
     command: redis-server
