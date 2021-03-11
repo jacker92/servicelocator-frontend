@@ -7,9 +7,13 @@ const SearchForm = ({ setServices }) => {
 
   const executeSearch = async (e) => {
     e.preventDefault()
+    if(!searchTerm) {
+      return
+    }
+
     const response = await getServices(searchTerm)
     setSearchTerm('')
-    setServices(response.data.results.map(x => (
+    setServices(response.data.map(x => (
       {
         id: x.id,
         name: x.name.fi,
