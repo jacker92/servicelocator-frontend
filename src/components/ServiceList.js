@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import TableMovementLinks from './TableMovementLinks'
 import _ from 'lodash'
 
 const ServiceList = ({ services, setServices }) => {
@@ -35,24 +36,27 @@ const ServiceList = ({ services, setServices }) => {
   }
 
   return (
-    <Table id="serviceTable" striped bordered hover responsive="lg">
-      <thead>
-        <tr>
-          <th onClick={sortByName}><a href="/#">Name</a></th>
-          <th onClick={sortByWebsite}><a href="/#">Website</a></th>
-        </tr>
-      </thead>
-      <tbody>
-        {services.map(x => (
-          <tr key={x.id}>
-            <td>
-              <Link to={`/${x.id}`} >{x.name}</Link>
-            </td>
-            <td>{x.website && <a href={x.website}>{x.website}</a>}</td>
+    <div>
+      <TableMovementLinks services={services}/>
+      <Table id="serviceTable" striped bordered hover responsive="lg">
+        <thead>
+          <tr>
+            <th onClick={sortByName}><a href="/#">Name</a></th>
+            <th onClick={sortByWebsite}><a href="/#">Website</a></th>
           </tr>
-        ))}
-      </tbody>
-    </Table>
+        </thead>
+        <tbody>
+          {services.results.map(x => (
+            <tr key={x.id}>
+              <td>
+                <Link to={`/${x.id}`} >{x.name}</Link>
+              </td>
+              <td>{x.website && <a href={x.website}>{x.website}</a>}</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </div>
   )
 }
 

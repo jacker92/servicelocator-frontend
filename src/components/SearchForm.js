@@ -15,8 +15,7 @@ const SearchForm = ({ setServices }) => {
 
     const response = await getServices(searchTerm)
 
-    console.log(response.data)
-    setServices(response.data.results.map(x => (
+    const results = response.data.results.map(x => (
       {
         id: x.id,
         name: x.name.fi,
@@ -28,7 +27,8 @@ const SearchForm = ({ setServices }) => {
         street: x.street_address,
         description: x.description
       }
-    )))
+    ))
+    setServices({ ...response.data, results })
   }
 
   return (

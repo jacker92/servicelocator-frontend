@@ -15,3 +15,8 @@ h1 {
 h1, .SearchForm {
     text-align: center;
 }
+
+#tableMovementLinks {
+    float: right;
+    align-content: flex-end;
+}
