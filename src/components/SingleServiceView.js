@@ -4,7 +4,6 @@ import { Table, Container } from 'react-bootstrap'
 
 const SingleServiceView = ({ services }) => {
   const { id } = useParams()
-
   const service = services && services.find(p => p.id === Number(id))
 
   console.log(services, service)
