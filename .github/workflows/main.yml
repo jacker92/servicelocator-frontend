@@ -45,6 +45,8 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
+        env:
+          REACT_APP_BACKEND_URL: ${{ secrets.REACT_APP_BACKEND_URL }}
       - name: Publish
         if: success()
         uses: netlify/actions/cli@master
