@@ -26,16 +26,18 @@ test('Should have all attributes empty in no services found', () => {
 
 test('Should have all attributes displayed in service is found', () => {
 
-  const services = [
-    {
-      id:123,
-      description: 'test'
-    }
-  ]
+  const services = {
+    results: [
+      {
+        id: 123,
+        description: 'test'
+      }
+    ]
+  }
 
   renderWithProviders(
     <Route path="/:id">
-      <SingleServiceView services={services}/>
+      <SingleServiceView services={services} />
     </Route>,
     {
       route: '/123'
