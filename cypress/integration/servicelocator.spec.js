@@ -17,7 +17,7 @@ describe('Service Locator', function() {
       .click()
 
     cy.get('#serviceTable')
-      .contains('Päällikkö')
+      .contains('Laajasalon VPK, palokunnantalo')
   })
 
   it('does not trigger search when submitted empty string', function() {
