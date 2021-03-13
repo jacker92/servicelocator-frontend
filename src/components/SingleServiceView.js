@@ -6,8 +6,6 @@ const SingleServiceView = ({ services }) => {
   const { id } = useParams()
   const service = services && services.results.find(p => p.id === Number(id))
 
-  console.log(services, service)
-
   let serviceData
 
   if (service) {

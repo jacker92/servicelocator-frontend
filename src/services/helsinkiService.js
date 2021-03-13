@@ -5,13 +5,11 @@ dotenv.config()
 const baseUrl = process.env.REACT_APP_BACKEND_URL
 
 export const getServices = async (searchTerm, page) => {
-  console.log('Getting services', page, searchTerm)
-  let response
+  let url = `${baseUrl}${searchTerm}`
   if (page) {
-    response = await axios.get(`${baseUrl}${searchTerm}&page=${page}`)
-  } else {
-    response = await axios.get(`${baseUrl}${searchTerm}`)
+    url += `&page=${page}`
   }
+  const response = await axios.get(`${url}`)
   return { ...response.data, results: parseResults(response.data.results) }
 }
 

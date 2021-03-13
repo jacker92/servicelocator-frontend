@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { getServices } from '../services/helsinkiService'
 
-const SearchForm = ({ setServices, setSearchTerm }) => {
+const SearchForm = ({ setServices, setSearchTerm, setLoading }) => {
 
   const[inputSearchTerm, setInputSearchTerm] = useState('')
   const executeSearch = async (e) => {
     e.preventDefault()
+    setLoading(true)
 
     const searchTerm = inputSearchTerm
     setSearchTerm(inputSearchTerm)
@@ -18,6 +19,7 @@ const SearchForm = ({ setServices, setSearchTerm }) => {
 
     const services = await getServices(searchTerm)
     setServices(services)
+    setLoading(false)
   }
 
   return (
