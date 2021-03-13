@@ -38,7 +38,13 @@ const SingleServiceView = ({ services }) => {
             </tr>
             <tr>
               <td><b>View in Google Maps</b></td>
-              <td>{service.location && <a href={`https://www.google.com/maps/search/?api=1&query=${service.location[1]},${service.location[0]}`} target="_blank" rel="noopener noreferrer">View</a>}</td>
+              <td>{service.location &&
+              <a href={`https://www.google.com/maps/search/?api=1&query=${service.location[1]},${service.location[0]}`}
+                target="_blank"
+                rel="noopener noreferrer">
+                View
+              </a>}
+              </td>
             </tr>
             <tr>
               <td><b>Street address</b></td>

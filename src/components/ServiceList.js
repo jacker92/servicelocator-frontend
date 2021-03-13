@@ -6,7 +6,6 @@ import _ from 'lodash'
 
 const ServiceList = ({ services, setServices, ...others }) => {
   const [sortedByName, setSortedByName] = useState(false)
-  const [sortedByWebsite, setSortedByWebsite] = useState(false)
 
   if (!services || !services.results || services.results.length === 0) {
     return (
@@ -25,16 +24,6 @@ const ServiceList = ({ services, setServices, ...others }) => {
     setServices({ ...services, results: result })
   }
 
-  const sortByWebsite = () => {
-    let result = _.sortBy(services.results, ['website'])
-
-    if (sortedByWebsite) {
-      result = result.reverse()
-    }
-    setSortedByWebsite(!sortedByWebsite)
-    setServices({ ...services, results: result })
-  }
-
   return (
     <div id="serviceTable">
       <TableMovementLinks
@@ -46,7 +35,7 @@ const ServiceList = ({ services, setServices, ...others }) => {
         <thead>
           <tr>
             <th onClick={sortByName}><a href="/#">Name</a></th>
-            <th onClick={sortByWebsite}><a href="/#">Website</a></th>
+            <th>Website</th>
           </tr>
         </thead>
         <tbody>
