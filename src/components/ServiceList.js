@@ -38,9 +38,9 @@ const ServiceList = ({ services, setServices, searchTerm }) => {
   }
 
   return (
-    <div>
+    <div id="serviceTable">
       <TableMovementLinks setServices={setServices} services={services} searchTerm={searchTerm}/>
-      <Table id="serviceTable" striped bordered hover responsive="lg">
+      <Table striped bordered hover responsive="lg">
         <thead>
           <tr>
             <th onClick={sortByName}><a href="/#">Name</a></th>
