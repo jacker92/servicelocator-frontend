@@ -7,13 +7,14 @@ import '../App.css'
 
 const App = () => {
   const [services, setServices] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
 
   return (
     <Router>
       <div className="App">
         <Switch>
           <Route exact path="/">
-            <SearchServicesView setServices={setServices} services={services}/>
+            <SearchServicesView searchTerm={searchTerm} setSearchTerm={setSearchTerm} setServices={setServices} services={services}/>
           </Route>
           <Route path="/:id">
             <SingleServiceView services={services}/>

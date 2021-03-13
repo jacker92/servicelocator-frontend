@@ -1,16 +1,16 @@
 import { Container } from 'react-bootstrap'
 import SearchForm from './SearchForm'
 import ServiceList from './ServiceList'
-import React, { useState } from 'react'
+import React from 'react'
 
 const SearchServicesView = (props) => {
-  const [searchTerm, setSearchTerm] = useState('')
 
+  console.log('Serviicies', props.services)
   return (
     <Container>
       <h1>Helsinki Service Locator</h1>
-      <SearchForm {...props} setSearchTerm={setSearchTerm}/>
-      <ServiceList {...props} searchTerm={searchTerm}/>
+      <SearchForm {...props}/>
+      <ServiceList {...props}/>
     </Container>
   )
 }
