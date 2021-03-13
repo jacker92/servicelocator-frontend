@@ -7,7 +7,6 @@ const SearchForm = ({ setServices, setSearchTerm, setLoading }) => {
   const[inputSearchTerm, setInputSearchTerm] = useState('')
   const executeSearch = async (e) => {
     e.preventDefault()
-    setLoading(true)
 
     const searchTerm = inputSearchTerm
     setSearchTerm(inputSearchTerm)
@@ -17,6 +16,7 @@ const SearchForm = ({ setServices, setSearchTerm, setLoading }) => {
       return
     }
 
+    setLoading(true)
     const services = await getServices(searchTerm)
     setServices(services)
     setLoading(false)

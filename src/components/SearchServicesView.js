@@ -10,10 +10,16 @@ const SearchServicesView = (props) => {
   return (
     <Container>
       <h1>Helsinki Service Locator</h1>
-      <SearchForm {...props} setLoading={setLoading} />
+      <SearchForm
+        {...props}
+        setLoading={setLoading}
+      />
       {loading ?
         <Loader /> :
-        <ServiceList {...props} />
+        <ServiceList
+          {...props}
+          setLoading={setLoading}
+        />
       }
     </Container>
   )

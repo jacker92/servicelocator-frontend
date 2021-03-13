@@ -1,35 +1,33 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 import { getServices } from '../services/helsinkiService'
+import { getParameterByName } from '../utils/utils'
 
-const TableMovementLinks = ({ services, setServices, searchTerm }) => {
+const TableMovementLinks = ({ services, setServices, searchTerm, setLoading }) => {
 
-  const getParameterByName = (name, url) => {
-    name = name.replace(/[[\]]/g, '\\$&')
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-      results = regex.exec(url)
-    if (!results) return null
-    if (!results[2]) return ''
-    return decodeURIComponent(results[2].replace(/\+/g, ' '))
-  }
-
-  const onNext = async () => {
-    console.log(searchTerm, 'Searchterm')
-    const result = await getServices(searchTerm, getParameterByName('page', services.next))
+  const getServicesFrom = async (url) => {
+    setLoading(true)
+    const result = await getServices(searchTerm, getParameterByName('page', url))
     setServices(result)
-    console.log(result)
-  }
-
-  const onPrevious = async () => {
-    const result = await getServices(searchTerm, getParameterByName('page', services.previous))
-    setServices(result)
-    console.log(result)
+    setLoading(false)
   }
 
   return (
     <div id="tableMovementLinks">
-      {services.previous && <Button variant="link" onClick={() => onPrevious()}>Previous page</Button>}
-      {services.next && <Button variant="link" onClick={() => onNext()}>Next page</Button>}
+      {services.previous &&
+        <Button
+          variant="link"
+          onClick={() => getServicesFrom(services.previous)}>
+          Previous page
+        </Button>
+      }
+      {services.next &&
+        <Button
+          variant="link"
+          onClick={() => getServicesFrom(services.next)}>
+          Next page
+        </Button>
+      }
     </div>
   )
 }
