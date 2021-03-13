@@ -12,6 +12,10 @@ const TableMovementLinks = ({ services, setServices, searchTerm, setLoading }) =
     setLoading(false)
   }
 
+  if (!services) {
+    return null
+  }
+
   return (
     <div id="tableMovementLinks">
       {services.previous &&
