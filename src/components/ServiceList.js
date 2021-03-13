@@ -42,7 +42,7 @@ const ServiceList = ({ services, setServices, ...others }) => {
         services={services}
         {...others}
       />
-      <Table striped bordered hover>
+      <Table striped bordered hover responsive >
         <thead>
           <tr>
             <th onClick={sortByName}><a href="/#">Name</a></th>
@@ -59,7 +59,7 @@ const ServiceList = ({ services, setServices, ...others }) => {
               <a href={x.website}
                 target="_blank"
                 rel="noopener noreferrer">
-                {x.website}
+                View
               </a>}
               </td>
             </tr>

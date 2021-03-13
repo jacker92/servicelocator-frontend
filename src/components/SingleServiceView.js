@@ -12,7 +12,7 @@ const SingleServiceView = ({ services }) => {
     serviceData = (
       <>
         <h1>{service.name}</h1>
-        <Table id="singleServiceTable" striped bordered hover responsive="lg">
+        <Table id="singleServiceTable" striped bordered hover responsive>
           <tbody>
             <tr>
               <td><b>Info</b></td>
