@@ -21,7 +21,7 @@ const SearchForm = ({ setServices, setSearchTerm, setLoading }) => {
     const services = await getServices(searchTerm)
 
     toast.info(services.count > 0 ?
-      `Found ${services.count} services!` :
+      `Found ${services.count} service${services.count > 1 ? 's' : ''}!` :
       'No services found',
     {
       position:'top-center',
