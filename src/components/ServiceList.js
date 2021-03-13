@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom'
 import TableMovementLinks from './TableMovementLinks'
 import _ from 'lodash'
 
-const ServiceList = ({ services, setServices }) => {
+const ServiceList = ({ services, setServices, searchTerm }) => {
 
   const [sortedByName, setSortedByName] = useState(false)
   const [sortedByWebsite, setSortedByWebsite] = useState(false)
+
+  console.log(services)
 
   if (!services || services.length === 0) {
     return (
@@ -37,7 +39,7 @@ const ServiceList = ({ services, setServices }) => {
 
   return (
     <div>
-      <TableMovementLinks services={services}/>
+      <TableMovementLinks setServices={setServices} services={services} searchTerm={searchTerm}/>
       <Table id="serviceTable" striped bordered hover responsive="lg">
         <thead>
           <tr>

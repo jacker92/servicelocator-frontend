@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Container } from 'react-bootstrap'
-import SearchForm from './SearchForm'
-import ServiceList from './ServiceList'
+import SearchServicesView from './SearchServicesView'
 import SingleServiceView from './SingleServiceView'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import '../App.css'
@@ -23,16 +21,6 @@ const App = () => {
         </Switch>
       </div>
     </Router>
-  )
-}
-
-const SearchServicesView = (props) => {
-  return (
-    <Container>
-      <h1>Helsinki Service Locator</h1>
-      <SearchForm {...props}/>
-      <ServiceList {...props}/>
-    </Container>
   )
 }
 
