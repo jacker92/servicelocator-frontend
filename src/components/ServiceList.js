@@ -11,7 +11,7 @@ const ServiceList = ({ services, setServices, searchTerm }) => {
 
   console.log(services)
 
-  if (!services || services.length === 0) {
+  if (!services || !services.results || services.results.length === 0) {
     return (
       <></>
     )

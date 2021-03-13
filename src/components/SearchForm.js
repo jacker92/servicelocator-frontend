@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { getServices } from '../services/helsinkiService'
 
-const SearchForm = ({ setServices, setSearchTerm, searchTerm }) => {
+const SearchForm = ({ setServices, setSearchTerm }) => {
 
   const[inputSearchTerm, setInputSearchTerm] = useState('')
   const executeSearch = async (e) => {
     e.preventDefault()
 
+    const searchTerm = inputSearchTerm
     setSearchTerm(inputSearchTerm)
     setInputSearchTerm('')
 
@@ -15,22 +16,8 @@ const SearchForm = ({ setServices, setSearchTerm, searchTerm }) => {
       return
     }
 
-    const response = await getServices(searchTerm)
-
-    const results = response.data.results.map(x => (
-      {
-        id: x.id,
-        name: x.name.fi,
-        info: x.connections[0] && x.connections[0].name.fi,
-        email: x.email,
-        website: x.www && x.www.fi,
-        location: x.location.coordinates,
-        zipcode: x.address_zip,
-        street: x.street_address,
-        description: x.description
-      }
-    ))
-    setServices({ ...response.data, results })
+    const services = await getServices(searchTerm)
+    setServices(services)
   }
 
   return (

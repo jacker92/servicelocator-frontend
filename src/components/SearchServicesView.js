@@ -9,7 +9,7 @@ const SearchServicesView = (props) => {
   return (
     <Container>
       <h1>Helsinki Service Locator</h1>
-      <SearchForm {...props} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+      <SearchForm {...props} setSearchTerm={setSearchTerm}/>
       <ServiceList {...props} searchTerm={searchTerm}/>
     </Container>
   )

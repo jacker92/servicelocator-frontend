@@ -4,7 +4,7 @@ import { getServices } from '../services/helsinkiService'
 
 const TableMovementLinks = ({ services, setServices, searchTerm }) => {
 
-  function getParameterByName(name, url = window.location.href) {
+  const getParameterByName = (name, url) => {
     name = name.replace(/[[\]]/g, '\\$&')
     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
       results = regex.exec(url)
