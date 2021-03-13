@@ -12,6 +12,7 @@ const Loader = () => {
       loading={true}
       css={css}
       size={150}
+      color="#349beb"
     />
   )
 }

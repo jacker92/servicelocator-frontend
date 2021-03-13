@@ -52,6 +52,17 @@ describe('Service Locator', function () {
         .contains('Next page')
     })
 
+    it('should sort items correcly', function() {
+
+      cy.contains('Website').click()
+      cy.get('#serviceTable')
+        .contains('Laajasalon VPK, palokunnantalo')
+
+      cy.contains('Name').click()
+      cy.get('#serviceTable')
+        .contains('Laajasalon VPK, palokunnantalo')
+    })
+
     it('should load next page if requested', function () {
       cy.get('#searchInput')
         .type('Helsinki')

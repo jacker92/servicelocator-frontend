@@ -15,23 +15,24 @@ const ServiceList = ({ services, setServices, ...others }) => {
   }
 
   const sortByName = () => {
-    let result = _.sortBy(services, ['name'])
+    let result = _.sortBy(services.results, ['name'])
 
     if (sortedByName) {
       result = result.reverse()
     }
+
     setSortedByName(!sortedByName)
-    setServices(result)
+    setServices({ ...services, results: result })
   }
 
   const sortByWebsite = () => {
-    let result = _.sortBy(services, ['website'])
+    let result = _.sortBy(services.results, ['website'])
 
     if (sortedByWebsite) {
       result = result.reverse()
     }
     setSortedByWebsite(!sortedByWebsite)
-    setServices(result)
+    setServices({ ...services, results: result })
   }
 
   return (
