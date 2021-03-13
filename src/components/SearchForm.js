@@ -39,7 +39,8 @@ const SearchForm = ({ setServices, setSearchTerm, setLoading }) => {
           id="searchButton"
           type="submit"
           onClick={(e) => executeSearch(e)}
-          className="mb-2">
+          className="mb-2"
+          style={{ marginTop:'5px' }}>
           Search
         </Button>
       </Form>
