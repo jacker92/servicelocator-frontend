@@ -17,7 +17,8 @@ test('when pressed search the input field should be cleared', () => {
   fireEvent.change(linkElement, { target:{ value: 'foo' } })
   expect(linkElement).toBeInTheDocument()
   expect(linkElement).toHaveValue('foo')
-
   screen.getByText('Search').click()
-  expect(linkElement).toHaveValue('')
+  setTimeout(() => {
+    expect(linkElement).toHaveValue('')
+  }, 50)
 })

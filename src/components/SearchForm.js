@@ -8,8 +8,8 @@ const SearchForm = ({ setServices, setSearchTerm, searchTerm }) => {
   const executeSearch = async (e) => {
     e.preventDefault()
 
-    setInputSearchTerm('')
     setSearchTerm(inputSearchTerm)
+    setInputSearchTerm('')
 
     if (!searchTerm) {
       return
