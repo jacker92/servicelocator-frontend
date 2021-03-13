@@ -24,11 +24,17 @@ const SingleServiceView = ({ services }) => {
             </tr>
             <tr>
               <td><b>Email</b></td>
-              <td><a href={`mailto:${service.email}}`}>{service.email}</a></td>
+              <td><a href={`mailto:${service.email}`}>{service.email}</a></td>
             </tr>
             <tr>
               <td><b>Website</b></td>
-              <td>{service.website && <a href={service.website} target="_blank" rel="noopener noreferrer">{service.website}</a>}</td>
+              <td>{service.website &&
+              <a href={service.website}
+                target="_blank"
+                rel="noopener noreferrer">
+                {service.website}
+              </a>}
+              </td>
             </tr>
             <tr>
               <td><b>View in Google Maps</b></td>

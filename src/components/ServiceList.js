@@ -42,7 +42,7 @@ const ServiceList = ({ services, setServices, ...others }) => {
         services={services}
         {...others}
       />
-      <Table striped bordered hover responsive="lg">
+      <Table striped bordered hover>
         <thead>
           <tr>
             <th onClick={sortByName}><a href="/#">Name</a></th>
@@ -55,7 +55,13 @@ const ServiceList = ({ services, setServices, ...others }) => {
               <td>
                 <Link to={`/${x.id}`} >{x.name}</Link>
               </td>
-              <td>{x.website && <a href={x.website}>{x.website}</a>}</td>
+              <td>{x.website &&
+              <a href={x.website}
+                target="_blank"
+                rel="noopener noreferrer">
+                {x.website}
+              </a>}
+              </td>
             </tr>
           ))}
         </tbody>

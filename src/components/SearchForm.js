@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { getServices } from '../services/helsinkiService'
+import { toast } from 'react-toastify'
 
 const SearchForm = ({ setServices, setSearchTerm, setLoading }) => {
 
@@ -18,6 +19,14 @@ const SearchForm = ({ setServices, setSearchTerm, setLoading }) => {
 
     setLoading(true)
     const services = await getServices(searchTerm)
+
+    toast.info(services.count > 0 ?
+      `Found ${services.count} services!` :
+      'No services found',
+    {
+      position:'top-center',
+      autoClose: 2000
+    })
     setServices(services)
     setLoading(false)
   }
