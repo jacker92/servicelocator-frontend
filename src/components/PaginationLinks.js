@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Pagination } from 'react-bootstrap'
 import { ApplicationContext } from '../contexts/ApplicationContext'
 import { getServices } from '../services/helsinkiService'
+import { removeDuplicates } from '../utils/utils'
 
 const PaginationLinks = () => {
   const { services, setServices, searchTerm, setLoading, activePage, setActivePage } = useContext(ApplicationContext)
@@ -14,7 +15,11 @@ const PaginationLinks = () => {
 
     setActivePage(page)
     setLoading(false)
-    setServices(result)
+
+    setServices({
+      ...result,
+      results: removeDuplicates([...result.results, ...services.results])
+    })
   }
 
   if (!services) {
