@@ -24,7 +24,7 @@ const parseResults = (results) => {
       info: x.connections[0] && x.connections[0].name.fi,
       email: x.email,
       website: x.www && x.www.fi,
-      location: x.location.coordinates,
+      location: x.location && x.location.coordinates,
       zipcode: x.address_zip,
       street: x.street_address,
       description: x.description
