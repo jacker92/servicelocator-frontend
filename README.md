@@ -22,7 +22,7 @@ cd servicelocator-frontend
 
 2. Run docker-compose
 ```bash
-docker-compose up
+docker-compose up --build
 ```
 
 3. Go to https://localhost:3000 to view the fabulous website.
