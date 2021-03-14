@@ -123,6 +123,42 @@ describe('Service Locator', function () {
           .should('not.contain', 3)
       })
 
+      it('should reset active page after search', function () {
+        cy.get('#paginationLinks ul li span')
+          .contains(1)
+
+        cy.get('#paginationLinks ul li span')
+          .should('not.contain', 2)
+
+        cy.contains(NEXT_PAGE).click()
+
+        cy.get('#paginationLinks ul li span')
+          .contains(2)
+
+        cy.contains(NEXT_PAGE).click()
+
+        cy.get('#paginationLinks ul li span')
+          .contains(3)
+
+        cy.get('#paginationLinks ul li a')
+          .contains(1)
+
+        cy.get('#paginationLinks ul li span')
+          .should('not.contain', 2)
+
+        cy.get('*[class^="page-item active"]')
+          .contains(3)
+
+        cy.get('#searchInput')
+          .type('Helsinki')
+
+        cy.get('#searchButton')
+          .click()
+
+        cy.get('*[class^="page-item active"]')
+          .contains(1)
+      })
+
       it('after visiting single service view, should return to same state that was previously', function() {
         cy.contains(NEXT_PAGE).click()
         cy.contains(NEXT_PAGE).click()

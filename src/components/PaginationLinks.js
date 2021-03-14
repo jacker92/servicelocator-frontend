@@ -12,9 +12,9 @@ const PaginationLinks = () => {
     setLoading(true)
     const result = await getServices(searchTerm, page)
 
-    setServices(result)
-    setActivePage(page || 1)
+    setActivePage(page)
     setLoading(false)
+    setServices(result)
   }
 
   if (!services) {
@@ -28,25 +28,25 @@ const PaginationLinks = () => {
       <Pagination>
         {services.previous &&
           <Pagination.Prev
-            onClick={() => getServicesFrom(Number(activePage) - 1)}
+            onClick={async () => await getServicesFrom(Number(activePage) - 1)}
           />
         }
         {activePage > 1 &&
           <Pagination.Item
-            onClick={(e) => getServicesFrom(e.target.innerText)}>
+            onClick={async (e) => await getServicesFrom(e.target.innerText)}>
             {1}
           </Pagination.Item>}
         <Pagination.Item active>{activePage}</Pagination.Item>
         {
           activePage < numberOfPages &&
           <Pagination.Item
-            onClick={(e) => getServicesFrom(e.target.innerText)}>
+            onClick={async (e) => await getServicesFrom(e.target.innerText)}>
             {numberOfPages}
           </Pagination.Item>
         }
         {services.next &&
           <Pagination.Next
-            onClick={() => getServicesFrom(Number(activePage) + 1)}
+            onClick={async () => await getServicesFrom(Number(activePage) + 1)}
           />
         }
       </Pagination>

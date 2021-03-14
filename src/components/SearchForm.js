@@ -5,11 +5,11 @@ import { toast } from 'react-toastify'
 import { ApplicationContext } from '../contexts/ApplicationContext'
 
 const SearchForm = () => {
-  const { setServices, setSearchTerm, setLoading } = useContext(ApplicationContext)
+  const { setServices, setSearchTerm, setLoading, setActivePage } = useContext(ApplicationContext)
   const[inputSearchTerm, setInputSearchTerm] = useState('')
   const executeSearch = async (e) => {
     e.preventDefault()
-
+    setActivePage(1)
     const searchTerm = inputSearchTerm
     setSearchTerm(inputSearchTerm)
     setInputSearchTerm('')
