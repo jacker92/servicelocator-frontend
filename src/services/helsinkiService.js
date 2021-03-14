@@ -14,17 +14,14 @@ export const getServices = async (searchTerm, page) => {
     if (response.status === 200) {
       return { ...response.data, results: parseResults(response.data.results) }
     }
-  } catch(e) {
+  } catch (e) {
     console.log('Error', e)
   }
   return null
 }
 
 const parseResults = (results) => {
-  if (!results) {
-    return null
-  }
-  return results.map(x => (
+  return results ? results.map(x => (
     {
       id: x.id,
       name: x.name.fi,
@@ -36,5 +33,5 @@ const parseResults = (results) => {
       street: x.street_address,
       description: x.description
     }
-  ))
+  )) : null
 }
