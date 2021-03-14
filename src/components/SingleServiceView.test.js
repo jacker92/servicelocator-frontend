@@ -31,17 +31,15 @@ test('Should have all attributes empty in no services found', () => {
 
 test('Should have all attributes displayed in service is found', () => {
 
-  const services = {
-    results: [
-      {
-        id: 123,
-        description: 'test'
-      }
-    ]
-  }
+  const serviceCache =  [
+    {
+      id: 123,
+      description: 'test'
+    }
+  ]
 
   renderWithProviders(
-    <ApplicationContext.Provider value={{ services }}>
+    <ApplicationContext.Provider value={{ serviceCache }}>
       <Route path="/:id">
         <SingleServiceView/>
       </Route>
