@@ -1,19 +1,29 @@
 version: "3.9"
 services:
   frontend:
+    depends_on: 
+    - backend 
     build: .
     ports:
      - "3000:3000"
     environment:
-     - REACT_APP_BACKEND_URL=localhost:3001/api/helsinkiservices?query=
+     - REACT_APP_BACKEND_URL=http://localhost:3001/api/helsinkiservices?query=
   backend:
+    depends_on:
+    - redis
     build: https://github.com/jacker92/servicelocator-backend.git
     ports:
-      - "3001:3001"
-  redis:
-    image: "redis:alpine"
-    command: redis-server
-    ports:
-     - "6379:6379"
+      - "3001:80"
     environment:
-     - REDIS_REPLICATION_MODE=master
+    - REDIS_ENDPOINT=redis:6379
+    networks:
+      - app-tier
+  redis:
+    image: "bitnami/redis:latest"
+    environment:
+     - ALLOW_EMPTY_PASSWORD=yes
+    networks:
+      - app-tier
+networks:
+  app-tier:
+    driver: bridge
