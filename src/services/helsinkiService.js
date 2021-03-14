@@ -9,8 +9,15 @@ export const getServices = async (searchTerm, page) => {
   if (page) {
     url += `&page=${page}`
   }
-  const response = await axios.get(`${url}`)
-  return { ...response.data, results: parseResults(response.data.results) }
+  try {
+    const response = await axios.get(`${url}`)
+    if (response.status === 200) {
+      return { ...response.data, results: parseResults(response.data.results) }
+    }
+  } catch(e) {
+    console.log('Error', e)
+  }
+  return null
 }
 
 const parseResults = (results) => {

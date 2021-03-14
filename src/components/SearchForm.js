@@ -7,6 +7,11 @@ import { ApplicationContext } from '../contexts/ApplicationContext'
 const SearchForm = () => {
   const { setServices, setSearchTerm, setLoading, setActivePage, setServiceCache } = useContext(ApplicationContext)
   const[inputSearchTerm, setInputSearchTerm] = useState('')
+  const toastSettings = {
+    position:'top-center',
+    autoClose: 2000
+  }
+
   const executeSearch = async (e) => {
     e.preventDefault()
 
@@ -23,15 +28,16 @@ const SearchForm = () => {
     setLoading(true)
     const services = await getServices(searchTerm)
 
-    toast.info(services.count > 0 ?
-      `Found ${services.count} service${services.count > 1 ? 's' : ''}!` :
-      'No services found',
-    {
-      position:'top-center',
-      autoClose: 2000
-    })
-    setServices(services)
-    setServiceCache(services.results)
+    if (services) {
+      toast.info(services.count > 0 ?
+        `Found ${services.count} service${services.count > 1 ? 's' : ''}!` :
+        'No services found',
+      toastSettings)
+      setServices(services)
+      setServiceCache(services.results)
+    } else {
+      toast.error('Could not connect to server', toastSettings)
+    }
     setLoading(false)
   }
 

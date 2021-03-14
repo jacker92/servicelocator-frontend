@@ -13,11 +13,12 @@ const PaginationLinks = () => {
     setLoading(true)
     const result = await getServices(searchTerm, page)
 
-    setActivePage(page)
+    if (result) {
+      setServiceCache(removeDuplicates([...result.results, ...services.results]))
+      setServices(result)
+      setActivePage(page)
+    }
     setLoading(false)
-
-    setServiceCache(removeDuplicates([...result.results, ...services.results]))
-    setServices(result)
   }
 
   if (!services) {
