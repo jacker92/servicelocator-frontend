@@ -1,9 +1,12 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import ServiceList from './ServiceList'
 import React from 'react'
+import { renderWithTestContext } from '../utils/test-utils'
 
 test('Should not have anything displayed by default', () => {
-  render(<ServiceList />)
+  renderWithTestContext(
+    <ServiceList />
+  )
 
   expect(screen.queryByText('Name')).not.toBeInTheDocument()
   expect(screen.queryByText('Email')).not.toBeInTheDocument()

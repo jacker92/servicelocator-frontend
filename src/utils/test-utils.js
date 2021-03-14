@@ -2,15 +2,16 @@ import React from 'react'
 import { createMemoryHistory } from 'history'
 import { Router, Route } from 'react-router-dom'
 import { render } from '@testing-library/react'
+import { ApplicationContext } from '../ApplicationContext'
 
-export function renderWithProviders(
+export const renderWithProviders = (
   ui,
   {
     route = '/',
     history = createMemoryHistory({ initialEntries: [route] })
   } = {},
 
-) {
+) => {
   console.log('I am route inside renderWithProviders Wrapper:', route)
   return {
     ...render(
@@ -20,4 +21,12 @@ export function renderWithProviders(
     ),
     history
   }
+}
+
+export const renderWithTestContext = (elements, values) => {
+  render(
+    <ApplicationContext.Provider value={values || {}}>
+      {elements}
+    </ApplicationContext.Provider>
+  )
 }

@@ -1,9 +1,12 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import React from 'react'
+import { renderWithTestContext } from '../utils/test-utils'
 import SearchServicesView from './SearchServicesView'
 
 test('renders component correctly', () => {
-  render(<SearchServicesView />)
+  renderWithTestContext(
+    <SearchServicesView />
+  )
   const linkElement = screen.getByText('Helsinki Service Locator')
   expect(linkElement).toBeInTheDocument()
 

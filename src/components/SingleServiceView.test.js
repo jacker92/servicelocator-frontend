@@ -1,18 +1,23 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import SingleServiceView from './SingleServiceView'
 import React from 'react'
 import { Route, BrowserRouter as Router } from 'react-router-dom'
-import { renderWithProviders } from '../utils/test-utils'
+import { renderWithProviders, renderWithTestContext } from '../utils/test-utils'
+import { ApplicationContext } from '../ApplicationContext'
 
-test('Should have all attributes empty in no services found', () => {
-  render(
+const renderComponent = () => {
+  renderWithTestContext(
     <Router>
       <Route>
         <SingleServiceView />
       </Route>
     </Router>
   )
+}
 
+test('Should have all attributes empty in no services found', () => {
+
+  renderComponent()
   expect(screen.queryByText('Info')).not.toBeInTheDocument()
   expect(screen.queryByText('Description')).not.toBeInTheDocument()
   expect(screen.queryByText('Email')).not.toBeInTheDocument()
@@ -36,9 +41,11 @@ test('Should have all attributes displayed in service is found', () => {
   }
 
   renderWithProviders(
-    <Route path="/:id">
-      <SingleServiceView services={services} />
-    </Route>,
+    <ApplicationContext.Provider value={{ services }}>
+      <Route path="/:id">
+        <SingleServiceView/>
+      </Route>
+    </ApplicationContext.Provider>,
     {
       route: '/123'
     }

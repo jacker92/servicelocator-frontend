@@ -10,6 +10,7 @@ export const ApplicationProvider = ({ children }) => {
 
   const providerValue = useMemo(() => ({ services, setServices, searchTerm, setSearchTerm, activePage, setActivePage, loading, setLoading }),
     [services, setServices, searchTerm, setSearchTerm, activePage, setActivePage, loading, setLoading])
+
   return (
     <ApplicationContext.Provider value={providerValue}>
       {children}

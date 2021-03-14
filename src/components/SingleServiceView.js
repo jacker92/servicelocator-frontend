@@ -6,7 +6,8 @@ import { ApplicationContext } from '../ApplicationContext'
 const SingleServiceView = () => {
   const { services } = useContext(ApplicationContext)
   const { id } = useParams()
-  const service = services && services.results.find(p => p.id === Number(id))
+  const service = services && services.results &&
+  services.results.find(p => p.id === Number(id))
 
   let serviceData
 

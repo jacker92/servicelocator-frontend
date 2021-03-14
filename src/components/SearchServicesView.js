@@ -8,14 +8,14 @@ import 'react-toastify/dist/ReactToastify.css'
 import { ApplicationContext } from '../ApplicationContext'
 
 const SearchServicesView = () => {
-  const context = useContext(ApplicationContext)
+  const { loading } = useContext(ApplicationContext)
   return (
     <div>
       <ToastContainer/>
       <Container>
         <h1>Helsinki Service Locator</h1>
         <SearchForm />
-        {context.loading ?
+        {loading ?
           <Loader /> :
           <ServiceList />
         }

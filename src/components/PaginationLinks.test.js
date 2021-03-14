@@ -1,16 +1,23 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import React from 'react'
+import { renderWithTestContext } from '../utils/test-utils'
 import PaginationLinks from './PaginationLinks'
 
 test('renders component correctly', () => {
-  render(<PaginationLinks />)
+  renderWithTestContext(
+    <PaginationLinks />
+  )
 })
 
 test('should have previous button visible', () => {
   const services = {
     previous: 'test'
   }
-  render(<PaginationLinks services={services}/>)
+
+  renderWithTestContext(
+    <PaginationLinks/>, { services }
+  )
+
   const element = screen.queryByText('‹')
   expect(element).toBeInTheDocument()
 
@@ -22,7 +29,10 @@ test('should have next button visible', () => {
   const services = {
     next: 'test'
   }
-  render(<PaginationLinks services={services}/>)
+  renderWithTestContext(
+    <PaginationLinks/>, { services }
+  )
+
   const element = screen.queryByText('‹')
   expect(element).toBeNull()
 
@@ -35,7 +45,9 @@ test('should show active page correctly', () => {
   const services = {
     next: 'test'
   }
-  render(<PaginationLinks services={services} activePage={assertedValue} />)
+  renderWithTestContext(
+    <PaginationLinks/>, { services, activePage: assertedValue }
+  )
 
   const element = screen.queryByText(assertedValue)
   expect(element).toBeInTheDocument()
