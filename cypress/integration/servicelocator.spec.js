@@ -34,10 +34,8 @@ describe('Service Locator', function () {
     })
 
     it('should not have next and previous buttons if result count less than 20 ', function () {
-      const element = cy.get('#serviceTable')
-      element
+      cy.get('#serviceTable')
         .should('not.contain', PREVIOUS_PAGE)
-      element
         .should('not.contain', NEXT_PAGE)
     })
 
