@@ -124,6 +124,33 @@ describe('Service Locator', function () {
         cy.get('#paginationLinks ul li span')
           .should('not.contain', 3)
       })
+
+      it('after visiting single service view, should return to same state that was previously', function() {
+        cy.contains(NEXT_PAGE).click()
+        cy.contains(NEXT_PAGE).click()
+
+        cy.get('#paginationLinks ul li span')
+          .contains(3)
+
+        cy.get('#paginationLinks ul li a')
+          .contains(1)
+
+        cy.get('#paginationLinks ul li span')
+          .should('not.contain', 2)
+
+        cy.get('tbody tr td a:first').click()
+
+        cy.get('#gobackbutton').click()
+
+        cy.get('#paginationLinks ul li span')
+          .contains(3)
+
+        cy.get('#paginationLinks ul li a')
+          .contains(1)
+
+        cy.get('#paginationLinks ul li span')
+          .should('not.contain', 2)
+      })
     })
 
 

@@ -8,7 +8,6 @@ import 'react-toastify/dist/ReactToastify.css'
 
 const SearchServicesView = (props) => {
   const [loading, setLoading] = useState(false)
-  const [activePage, setActivePage] = useState(1)
 
   return (
     <div>
@@ -24,8 +23,6 @@ const SearchServicesView = (props) => {
           <ServiceList
             {...props}
             setLoading={setLoading}
-            activePage={activePage}
-            setActivePage={setActivePage}
           />
         }
       </Container>
