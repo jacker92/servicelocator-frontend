@@ -1,6 +1,8 @@
 # Service Locator
 
-With Service locator you can view all Helsinki's services that are found from [https://api.hel.fi/servicemap](https://api.hel.fi/servicemap).
+With Service locator you can view all Helsinki's services that are found from endpoint [https://api.hel.fi/servicemap/v2/](https://api.hel.fi/servicemap/v2/). The backend, which is between the frontend and the Service Map API, only returns resources that are type of **unit**, which by definition are *concrete physical locations which provide services to citizens*.  
+
+More information about Service Map API can be found here: [https://dev.hel.fi/apis/service-map-backend-api](https://dev.hel.fi/apis/service-map-backend-api) 
 
 Service locator consists of following services:
 - Frontend built with React (this repository)
