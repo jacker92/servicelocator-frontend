@@ -29,3 +29,14 @@ test('should have next button visible', () => {
   const element2 = screen.getByText('›')
   expect(element2).toBeInTheDocument()
 })
+
+test('should show active page correctly', () => {
+  const assertedValue = 22
+  const services = {
+    next: 'test'
+  }
+  render(<PaginationLinks services={services} activePage={assertedValue} />)
+
+  const element = screen.queryByText(assertedValue)
+  expect(element).toBeInTheDocument()
+})

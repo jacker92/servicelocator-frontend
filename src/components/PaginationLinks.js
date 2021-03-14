@@ -1,19 +1,17 @@
 import React from 'react'
 import { Pagination } from 'react-bootstrap'
 import { getServices } from '../services/helsinkiService'
-import { getParameterByName } from '../utils/utils'
 
 const PaginationLinks = ({ services, setServices, searchTerm, setLoading, activePage, setActivePage }) => {
-  const getServicesFrom = async (url) => {
-    if (!url) {
+  const getServicesFrom = async (page) => {
+    if (!page) {
       return
     }
     setLoading(true)
-    const page = getParameterByName('page', url)
     const result = await getServices(searchTerm, page)
 
     setServices(result)
-    setActivePage(page)
+    setActivePage(page || 1)
     setLoading(false)
   }
 
@@ -21,18 +19,32 @@ const PaginationLinks = ({ services, setServices, searchTerm, setLoading, active
     return null
   }
 
+  const numberOfPages = Math.ceil(services.count / 20)
+
   return (
     <div id="paginationLinks">
       <Pagination>
         {services.previous &&
           <Pagination.Prev
-            onClick={() => getServicesFrom(services.previous)}
+            onClick={() => getServicesFrom(Number(activePage) - 1)}
           />
         }
+        {activePage > 1 &&
+          <Pagination.Item
+            onClick={(e) => getServicesFrom(e.target.innerText)}>
+            {1}
+          </Pagination.Item>}
         <Pagination.Item active>{activePage}</Pagination.Item>
+        {
+          activePage < numberOfPages &&
+          <Pagination.Item
+            onClick={(e) => getServicesFrom(e.target.innerText)}>
+            {numberOfPages}
+          </Pagination.Item>
+        }
         {services.next &&
           <Pagination.Next
-            onClick={() => getServicesFrom(services.next)}
+            onClick={() => getServicesFrom(Number(activePage) + 1)}
           />
         }
       </Pagination>
