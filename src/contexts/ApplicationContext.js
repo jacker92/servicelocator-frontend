@@ -4,11 +4,12 @@ export const ApplicationContext = createContext(null)
 
 export const ApplicationProvider = ({ children }) => {
   const [services, setServices] = useState([])
+  const [serviceCache, setServiceCache] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [activePage, setActivePage] = useState(1)
   const [loading, setLoading] = useState(false)
 
-  const providerValue = useMemo(() => ({ services, setServices, searchTerm, setSearchTerm, activePage, setActivePage, loading, setLoading }),
+  const providerValue = useMemo(() => ({ services, setServices, searchTerm, setSearchTerm, activePage, setActivePage, loading, setLoading, serviceCache, setServiceCache }),
     [services, setServices, searchTerm, setSearchTerm, activePage, setActivePage, loading, setLoading])
 
   return (

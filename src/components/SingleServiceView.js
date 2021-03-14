@@ -4,10 +4,10 @@ import { Table, Container } from 'react-bootstrap'
 import { ApplicationContext } from '../contexts/ApplicationContext'
 
 const SingleServiceView = () => {
-  const { services } = useContext(ApplicationContext)
+  const { serviceCache } = useContext(ApplicationContext)
+
   const { id } = useParams()
-  const service = services && services.results &&
-  services.results.find(p => p.id === Number(id))
+  const service = serviceCache && serviceCache.find(p => p.id === Number(id))
 
   let serviceData
 

@@ -5,18 +5,20 @@ import { toast } from 'react-toastify'
 import { ApplicationContext } from '../contexts/ApplicationContext'
 
 const SearchForm = () => {
-  const { setServices, setSearchTerm, setLoading, setActivePage } = useContext(ApplicationContext)
+  const { setServices, setSearchTerm, setLoading, setActivePage, setServiceCache } = useContext(ApplicationContext)
   const[inputSearchTerm, setInputSearchTerm] = useState('')
   const executeSearch = async (e) => {
     e.preventDefault()
-    setActivePage(1)
-    const searchTerm = inputSearchTerm
-    setSearchTerm(inputSearchTerm)
-    setInputSearchTerm('')
 
-    if (!searchTerm) {
+    if (!inputSearchTerm) {
       return
     }
+
+    const searchTerm = inputSearchTerm
+    setInputSearchTerm('')
+
+    setActivePage(1)
+    setSearchTerm(searchTerm)
 
     setLoading(true)
     const services = await getServices(searchTerm)
@@ -29,6 +31,7 @@ const SearchForm = () => {
       autoClose: 2000
     })
     setServices(services)
+    setServiceCache(services.results)
     setLoading(false)
   }
 

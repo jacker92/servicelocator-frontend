@@ -5,7 +5,7 @@ import { getServices } from '../services/helsinkiService'
 import { removeDuplicates } from '../utils/utils'
 
 const PaginationLinks = () => {
-  const { services, setServices, searchTerm, setLoading, activePage, setActivePage } = useContext(ApplicationContext)
+  const { services, setServices, searchTerm, setLoading, activePage, setActivePage, setServiceCache } = useContext(ApplicationContext)
   const getServicesFrom = async (page) => {
     if (!page) {
       return
@@ -16,10 +16,8 @@ const PaginationLinks = () => {
     setActivePage(page)
     setLoading(false)
 
-    setServices({
-      ...result,
-      results: removeDuplicates([...result.results, ...services.results])
-    })
+    setServiceCache(removeDuplicates([...result.results, ...services.results]))
+    setServices(result)
   }
 
   if (!services) {
