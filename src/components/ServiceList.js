@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import PaginationLinks from './PaginationLinks'
 import _ from 'lodash'
+import { ApplicationContext } from '../ApplicationContext'
 
-const ServiceList = ({ services, setServices, ...others }) => {
+const ServiceList = () => {
   const [sortedByName, setSortedByName] = useState(false)
+  const { services, setServices } = useContext(ApplicationContext)
 
   if (!services || !services.results || services.results.length === 0) {
     return (
@@ -26,11 +28,7 @@ const ServiceList = ({ services, setServices, ...others }) => {
 
   return (
     <div id="serviceTable">
-      <PaginationLinks
-        setServices={setServices}
-        services={services}
-        {...others}
-      />
+      <PaginationLinks />
       <Table striped bordered hover responsive >
         <thead>
           <tr>

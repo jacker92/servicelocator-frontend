@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Pagination } from 'react-bootstrap'
+import { ApplicationContext } from '../ApplicationContext'
 import { getServices } from '../services/helsinkiService'
 
-const PaginationLinks = ({ services, setServices, searchTerm, setLoading, activePage, setActivePage }) => {
+const PaginationLinks = () => {
+  const { services, setServices, searchTerm, setLoading, activePage, setActivePage } = useContext(ApplicationContext)
   const getServicesFrom = async (page) => {
     if (!page) {
       return

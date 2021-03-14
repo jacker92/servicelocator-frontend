@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { getServices } from '../services/helsinkiService'
 import { toast } from 'react-toastify'
+import { ApplicationContext } from '../ApplicationContext'
 
-const SearchForm = ({ setServices, setSearchTerm, setLoading }) => {
-
+const SearchForm = () => {
+  const { setServices, setSearchTerm, setLoading } = useContext(ApplicationContext)
   const[inputSearchTerm, setInputSearchTerm] = useState('')
   const executeSearch = async (e) => {
     e.preventDefault()

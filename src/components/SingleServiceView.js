@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Table, Container } from 'react-bootstrap'
+import { ApplicationContext } from '../ApplicationContext'
 
-const SingleServiceView = ({ services }) => {
+const SingleServiceView = () => {
+  const { services } = useContext(ApplicationContext)
   const { id } = useParams()
   const service = services && services.results.find(p => p.id === Number(id))
 
@@ -56,7 +58,6 @@ const SingleServiceView = ({ services }) => {
             </tr>
           </tbody>
         </Table>
-
       </>
     )
   } else {
@@ -66,7 +67,12 @@ const SingleServiceView = ({ services }) => {
   return (
     <Container>
       <div>{serviceData}</div>
-      <Link id="gobackbutton" to="/" className="btn btn-primary">Go back</Link>
+      <Link
+        id="gobackbutton"
+        to="/"
+        className="btn btn-primary">
+          Go back
+      </Link>
     </Container>
   )
 }

@@ -1,29 +1,23 @@
 import { Container } from 'react-bootstrap'
 import SearchForm from './SearchForm'
 import ServiceList from './ServiceList'
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import Loader from './Loader'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { ApplicationContext } from '../ApplicationContext'
 
-const SearchServicesView = (props) => {
-  const [loading, setLoading] = useState(false)
-
+const SearchServicesView = () => {
+  const context = useContext(ApplicationContext)
   return (
     <div>
       <ToastContainer/>
       <Container>
         <h1>Helsinki Service Locator</h1>
-        <SearchForm
-          {...props}
-          setLoading={setLoading}
-        />
-        {loading ?
+        <SearchForm />
+        {context.loading ?
           <Loader /> :
-          <ServiceList
-            {...props}
-            setLoading={setLoading}
-          />
+          <ServiceList />
         }
       </Container>
     </div>
