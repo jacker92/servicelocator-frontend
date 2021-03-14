@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { getServices } from '../services/helsinkiService'
 import { toast } from 'react-toastify'
-import { ApplicationContext } from '../ApplicationContext'
+import { ApplicationContext } from '../contexts/ApplicationContext'
 
 const SearchForm = () => {
   const { setServices, setSearchTerm, setLoading } = useContext(ApplicationContext)

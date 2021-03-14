@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Table, Container } from 'react-bootstrap'
-import { ApplicationContext } from '../ApplicationContext'
+import { ApplicationContext } from '../contexts/ApplicationContext'
 
 const SingleServiceView = () => {
   const { services } = useContext(ApplicationContext)

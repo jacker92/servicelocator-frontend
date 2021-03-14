@@ -5,7 +5,7 @@ import React, { useContext } from 'react'
 import Loader from './Loader'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { ApplicationContext } from '../ApplicationContext'
+import { ApplicationContext } from '../contexts/ApplicationContext'
 
 const SearchServicesView = () => {
   const { loading } = useContext(ApplicationContext)

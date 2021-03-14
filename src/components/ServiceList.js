@@ -3,7 +3,7 @@ import { Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import PaginationLinks from './PaginationLinks'
 import _ from 'lodash'
-import { ApplicationContext } from '../ApplicationContext'
+import { ApplicationContext } from '../contexts/ApplicationContext'
 
 const ServiceList = () => {
   const [sortedByName, setSortedByName] = useState(false)

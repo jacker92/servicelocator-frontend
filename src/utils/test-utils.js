@@ -2,7 +2,7 @@ import React from 'react'
 import { createMemoryHistory } from 'history'
 import { Router, Route } from 'react-router-dom'
 import { render } from '@testing-library/react'
-import { ApplicationContext } from '../ApplicationContext'
+import { ApplicationContext } from '../contexts/ApplicationContext'
 
 export const renderWithProviders = (
   ui,

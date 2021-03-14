@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Pagination } from 'react-bootstrap'
-import { ApplicationContext } from '../ApplicationContext'
+import { ApplicationContext } from '../contexts/ApplicationContext'
 import { getServices } from '../services/helsinkiService'
 
 const PaginationLinks = () => {

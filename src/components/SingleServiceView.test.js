@@ -3,7 +3,7 @@ import SingleServiceView from './SingleServiceView'
 import React from 'react'
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 import { renderWithProviders, renderWithTestContext } from '../utils/test-utils'
-import { ApplicationContext } from '../ApplicationContext'
+import { ApplicationContext } from '../contexts/ApplicationContext'
 
 const renderComponent = () => {
   renderWithTestContext(

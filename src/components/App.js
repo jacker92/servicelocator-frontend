@@ -4,7 +4,7 @@ import SearchServicesView from './SearchServicesView'
 import SingleServiceView from './SingleServiceView'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import '../App.css'
-import { ApplicationProvider } from '../ApplicationContext'
+import { ApplicationProvider } from '../contexts/ApplicationContext'
 
 const App = () => {
   return (

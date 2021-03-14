@@ -151,7 +151,6 @@ describe('Service Locator', function () {
       })
     })
 
-
     it('shows single service view when clicked', function () {
       cy.contains('Laajasalon VPK, palokunnantalo').click()
       cy.contains('Laajasalon VPK:n perinteikäs palokunnantalo sijaitsee idyllisellä tontilla Laajasalon Yliskylässä.')
