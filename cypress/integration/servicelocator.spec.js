@@ -1,3 +1,6 @@
+const PREVIOUS_PAGE = '‹'
+const NEXT_PAGE = '›'
+
 describe('Service Locator', function () {
 
   beforeEach(function () {
@@ -33,9 +36,9 @@ describe('Service Locator', function () {
     it('should not have next and previous buttons if result count less than 20 ', function () {
       const element = cy.get('#serviceTable')
       element
-        .should('not.contain', 'Previous page')
+        .should('not.contain', PREVIOUS_PAGE)
       element
-        .should('not.contain', 'Next Page')
+        .should('not.contain', NEXT_PAGE)
     })
 
     it('should have next button visible if result count over 20', function () {
@@ -46,13 +49,13 @@ describe('Service Locator', function () {
         .click()
 
       cy.get('#serviceTable')
-        .should('not.contain', 'Previous page')
+        .should('not.contain', PREVIOUS_PAGE)
 
       cy.get('#serviceTable')
-        .contains('Next page')
+        .contains(NEXT_PAGE)
     })
 
-    it('should sort items correcly', function() {
+    it('should sort items correcly', function () {
 
       cy.contains('Website').click()
       cy.get('#serviceTable')
@@ -63,24 +66,66 @@ describe('Service Locator', function () {
         .contains('Laajasalon VPK, palokunnantalo')
     })
 
-    it('should load next page if requested', function () {
-      cy.get('#searchInput')
-        .type('Helsinki')
+    describe('Pagination', function() {
 
-      cy.get('#searchButton')
-        .click()
+      beforeEach(() => {
+        cy.get('#searchInput')
+          .type('Helsinki')
 
-      let firstValue
+        cy.get('#searchButton')
+          .click()
 
-      cy.get('tbody tr td:first').should($input => {
-        firstValue = $input.text()
+      })
+      it('should load next page if requested', function () {
+
+        let firstValue
+
+        cy.get('tbody tr td:first').should($input => {
+          firstValue = $input.text()
+        })
+
+        cy.contains(NEXT_PAGE).click()
+
+        cy.get('#serviceTable')
+          .should('not.contain', firstValue)
       })
 
-      cy.contains('Next page').click()
+      it('should show pagination correctly', function () {
+        cy.get('#paginationLinks ul li span')
+          .contains(1)
 
-      cy.get('#serviceTable')
-        .should('not.contain', firstValue)
+        cy.get('#paginationLinks ul li span')
+          .should('not.contain', 2)
+
+        cy.contains(NEXT_PAGE).click()
+
+        cy.get('#paginationLinks ul li span')
+          .contains(2)
+
+        cy.contains(NEXT_PAGE).click()
+
+        cy.get('#paginationLinks ul li span')
+          .contains(3)
+
+        cy.get('#paginationLinks ul li a')
+          .contains(1)
+
+        cy.get('#paginationLinks ul li span')
+          .should('not.contain', 2)
+
+        cy.contains(PREVIOUS_PAGE).click()
+
+        cy.get('#paginationLinks ul li span')
+          .contains(2)
+
+        cy.get('#paginationLinks ul li a')
+          .contains(1)
+
+        cy.get('#paginationLinks ul li span')
+          .should('not.contain', 3)
+      })
     })
+
 
     it('shows single service view when clicked', function () {
       cy.contains('Laajasalon VPK, palokunnantalo').click()
