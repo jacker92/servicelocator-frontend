@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import TableMovementLinks from './TableMovementLinks'
+import PaginationLinks from './PaginationLinks'
 import _ from 'lodash'
 
 const ServiceList = ({ services, setServices, ...others }) => {
@@ -26,7 +26,7 @@ const ServiceList = ({ services, setServices, ...others }) => {
 
   return (
     <div id="serviceTable">
-      <TableMovementLinks
+      <PaginationLinks
         setServices={setServices}
         services={services}
         {...others}
