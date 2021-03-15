@@ -1,44 +1,16 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { Form, Button } from 'react-bootstrap'
-import { getServices } from '../services/helsinkiService'
-import { toast } from 'react-toastify'
-import { ApplicationContext } from '../contexts/ApplicationContext'
+import { fetchServices } from '../reducers/serviceReducer'
 
 const SearchForm = () => {
-  const { setServices, setSearchTerm, setLoading, setActivePage, setServiceCache } = useContext(ApplicationContext)
-  const[inputSearchTerm, setInputSearchTerm] = useState('')
-  const toastSettings = {
-    position:'top-center',
-    autoClose: 2000
-  }
+  const dispatch = useDispatch()
+  const [inputSearchTerm, setInputSearchTerm] = useState('')
 
-  const executeSearch = async (e) => {
+  const executeSearch = (e) => {
     e.preventDefault()
-
-    if (!inputSearchTerm) {
-      return
-    }
-
-    const searchTerm = inputSearchTerm
+    dispatch(fetchServices(inputSearchTerm))
     setInputSearchTerm('')
-
-    setActivePage(1)
-    setSearchTerm(searchTerm)
-
-    setLoading(true)
-    const services = await getServices(searchTerm)
-
-    if (services) {
-      toast.info(services.count > 0 ?
-        `Found ${services.count} service${services.count > 1 ? 's' : ''}!` :
-        'No services found',
-      toastSettings)
-      setServices(services)
-      setServiceCache(services.results)
-    } else {
-      toast.error('Could not connect to server', toastSettings)
-    }
-    setLoading(false)
   }
 
   return (
@@ -59,7 +31,7 @@ const SearchForm = () => {
           type="submit"
           onClick={(e) => executeSearch(e)}
           className="mb-2"
-          style={{ marginTop:'5px' }}>
+          style={{ marginTop: '5px' }}>
           Search
         </Button>
       </Form>

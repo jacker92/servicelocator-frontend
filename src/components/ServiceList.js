@@ -1,29 +1,18 @@
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import { Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import PaginationLinks from './PaginationLinks'
-import _ from 'lodash'
-import { ApplicationContext } from '../contexts/ApplicationContext'
+import { useDispatch, useSelector } from 'react-redux'
+import { sortByName } from '../reducers/serviceReducer'
 
 const ServiceList = () => {
-  const [sortedByName, setSortedByName] = useState(false)
-  const { services, setServices } = useContext(ApplicationContext)
+  const dispatch = useDispatch()
+  const services = useSelector(state => state.services.services)
 
   if (!services || !services.results || services.results.length === 0) {
     return (
       <></>
     )
-  }
-
-  const sortByName = () => {
-    let result = _.sortBy(services.results, ['name'])
-
-    if (sortedByName) {
-      result = result.reverse()
-    }
-
-    setSortedByName(!sortedByName)
-    setServices({ ...services, results: result })
   }
 
   return (
@@ -32,7 +21,7 @@ const ServiceList = () => {
       <Table striped bordered hover responsive >
         <thead>
           <tr>
-            <th onClick={sortByName}><a href="/#">Name</a></th>
+            <th onClick={() => dispatch(sortByName())}><a href="/#">Name</a></th>
             <th>Website</th>
           </tr>
         </thead>
