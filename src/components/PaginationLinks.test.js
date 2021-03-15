@@ -29,6 +29,7 @@ test('should have next button visible', () => {
   const services = {
     next: 'test'
   }
+
   renderWithTestContext(
     <PaginationLinks/>, { services }
   )

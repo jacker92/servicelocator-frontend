@@ -13,8 +13,8 @@ export const removeDuplicates = (arr) => {
   return unique
 }
 
-export const sortServices = (services, sortedByName) => {
-  const result = _.sortBy(services.results, ['name'])
+export const sortServicesByName = (services, sortedByName) => {
+  const result = _.sortBy(services, ['name'])
   if (sortedByName) {
     result.reverse()
   }

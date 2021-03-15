@@ -2,7 +2,8 @@ import React from 'react'
 import { createMemoryHistory } from 'history'
 import { Router, Route } from 'react-router-dom'
 import { render } from '@testing-library/react'
-import { ApplicationContext } from '../contexts/ApplicationContext'
+import { Provider } from 'react-redux'
+import configureStore from 'redux-mock-store'
 
 export const renderWithProviders = (
   ui,
@@ -23,10 +24,21 @@ export const renderWithProviders = (
   }
 }
 
-export const renderWithTestContext = (elements, values) => {
+export const renderWithTestContext = (elements, services) => {
+  const store = createMockStore({
+    services:
+      services || {}
+  })
+
   render(
-    <ApplicationContext.Provider value={values || {}}>
+    <Provider store={store}>
       {elements}
-    </ApplicationContext.Provider>
+    </Provider>
   )
+}
+
+export const createMockStore = (initialState) => {
+  const middlewares = []
+  const mockStore = configureStore(middlewares)
+  return mockStore(initialState)
 }

@@ -3,7 +3,8 @@ import SingleServiceView from './SingleServiceView'
 import React from 'react'
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 import { renderWithProviders, renderWithTestContext } from '../utils/test-utils'
-import { ApplicationContext } from '../contexts/ApplicationContext'
+import { Provider } from 'react-redux'
+import { createMockStore } from '../utils/test-utils'
 
 const renderComponent = () => {
   renderWithTestContext(
@@ -31,19 +32,24 @@ test('Should have all attributes empty in no services found', () => {
 
 test('Should have all attributes displayed in service is found', () => {
 
-  const serviceCache =  [
-    {
-      id: 123,
-      description: 'test'
+  const initialState = {
+    services: {
+      serviceCache: [
+        {
+          id: 123,
+          description: 'test'
+        }
+      ]
     }
-  ]
+  }
+  const store = createMockStore(initialState)
 
   renderWithProviders(
-    <ApplicationContext.Provider value={{ serviceCache }}>
+    <Provider store={store}>
       <Route path="/:id">
         <SingleServiceView/>
       </Route>
-    </ApplicationContext.Provider>,
+    </Provider>,
     {
       route: '/123'
     }

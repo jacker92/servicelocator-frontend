@@ -24,7 +24,6 @@ const reducer = (state = notification, action) => {
 }
 
 export const setNotification = (services) => {
-  console.log('Services', services)
   return async dispatch => {
     if (services) {
       dispatch({ type: 'SUCCESS_NOTIFICATION', data: { serviceCount: services.count } })

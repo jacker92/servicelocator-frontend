@@ -1,6 +1,6 @@
 import { getServices } from '../services/helsinkiService'
 import { setNotification } from '../reducers/notificationReducer'
-import { sortServices } from '../utils/utils'
+import { sortServicesByName } from '../utils/utils'
 import { removeDuplicates } from '../utils/utils'
 
 const initialState = {
@@ -8,7 +8,7 @@ const initialState = {
   searchTerm: '',
   activePage: 1,
   loading: false,
-  serviceCache: {},
+  serviceCache: null,
   sortedByName: false
 }
 
@@ -41,7 +41,7 @@ const serviceReducer = (state = initialState, action) => {
     return {
       ...state,
       sortedByName: !state.sortedByName,
-      services: { ...state.services, results: sortServices(state.services.results, state.sortedByName) }
+      services: { ...state.services, results: sortServicesByName(state.services.results, state.sortedByName) }
     }
   case 'SET_LOADING':
     return {
