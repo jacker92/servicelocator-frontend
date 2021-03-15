@@ -33,14 +33,12 @@ test('Should have all attributes empty in no services found', () => {
 test('Should have all attributes displayed in service is found', () => {
 
   const initialState = {
-    services: {
-      serviceCache: [
-        {
-          id: 123,
-          description: 'test'
-        }
-      ]
-    }
+    serviceCache: [
+      {
+        id: 123,
+        description: 'test'
+      }
+    ]
   }
   const store = createMockStore(initialState)
 

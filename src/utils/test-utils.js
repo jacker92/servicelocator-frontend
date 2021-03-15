@@ -25,10 +25,7 @@ export const renderWithProviders = (
 }
 
 export const renderWithTestContext = (elements, services) => {
-  const store = createMockStore({
-    services:
-      services || {}
-  })
+  const store = createMockStore(services || {} )
 
   render(
     <Provider store={store}>

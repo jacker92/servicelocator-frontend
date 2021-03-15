@@ -7,7 +7,7 @@ import { sortByName } from '../reducers/serviceReducer'
 
 const ServiceList = () => {
   const dispatch = useDispatch()
-  const services = useSelector(state => state.services.services)
+  const services = useSelector(state => state.services)
 
   if (!services || !services.results || services.results.length === 0) {
     return (

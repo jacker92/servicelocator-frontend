@@ -4,7 +4,7 @@ import { Table, Container } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 
 const SingleServiceView = () => {
-  const { serviceCache } = useSelector(state => state.services)
+  const { serviceCache } = useSelector(state => state)
 
   const { id } = useParams()
   const service = serviceCache && serviceCache.find(p => p.id === Number(id))

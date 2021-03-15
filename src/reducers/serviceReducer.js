@@ -1,7 +1,7 @@
 import { getServices } from '../services/helsinkiService'
-import { setNotification } from '../reducers/notificationReducer'
 import { sortServicesByName } from '../utils/utils'
 import { removeDuplicates } from '../utils/utils'
+import { invokeNotification } from '../utils/notificationInvoker'
 
 const initialState = {
   services: null,
@@ -69,7 +69,7 @@ export const fetchServices = (searchTerm) => {
         }
       })
     }
-    dispatch(setNotification(services))
+    invokeNotification(services)
   }
 }
 

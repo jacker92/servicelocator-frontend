@@ -8,7 +8,7 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 const SearchServicesView = () => {
-  const { loading } = useSelector(state => state.services)
+  const { loading } = useSelector(state => state)
   return (
     <div>
       <ToastContainer/>
