@@ -1,24 +1,15 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Pagination } from 'react-bootstrap'
-import { ApplicationContext } from '../contexts/ApplicationContext'
-import { getServices } from '../services/helsinkiService'
-import { removeDuplicates } from '../utils/utils'
+import { fetchServicesFromPage } from '../reducers/serviceReducer'
+import { useDispatch, useSelector } from 'react-redux'
 
 const PaginationLinks = () => {
-  const { services, setServices, searchTerm, setLoading, activePage, setActivePage, setServiceCache } = useContext(ApplicationContext)
-  const getServicesFrom = async (page) => {
-    if (!page) {
-      return
-    }
-    setLoading(true)
-    const result = await getServices(searchTerm, page)
+  const dispatch = useDispatch()
+  const { services, searchTerm, activePage } = useSelector(state => state.services)
 
-    if (result) {
-      setServiceCache(removeDuplicates([...result.results, ...services.results]))
-      setServices(result)
-      setActivePage(page)
-    }
-    setLoading(false)
+  // const { services, setServices, searchTerm, setLoading, activePage, setActivePage, setServiceCache } = useContext(ApplicationContext)
+  const getServicesFrom = async (page) => {
+    dispatch(fetchServicesFromPage(searchTerm, page))
   }
 
   if (!services) {

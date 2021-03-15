@@ -1,10 +1,10 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Table, Container } from 'react-bootstrap'
-import { ApplicationContext } from '../contexts/ApplicationContext'
+import { useSelector } from 'react-redux'
 
 const SingleServiceView = () => {
-  const { serviceCache } = useContext(ApplicationContext)
+  const { serviceCache } = useSelector(state => state.services.serviceCache)
 
   const { id } = useParams()
   const service = serviceCache && serviceCache.find(p => p.id === Number(id))
