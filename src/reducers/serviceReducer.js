@@ -58,8 +58,7 @@ export const fetchServices = (searchTerm) => {
     if (!searchTerm) {
       return
     }
-    dispatch({ type:'SET_LOADING' })
-
+    dispatch ({ type: 'SET_LOADING' })
     const services = await getServices(searchTerm)
     if (services) {
       dispatch({
@@ -76,8 +75,7 @@ export const fetchServices = (searchTerm) => {
 
 export const fetchServicesFromPage = (searchTerm, page) => {
   return async dispatch => {
-    dispatch({ type:'SET_LOADING' })
-
+    dispatch ({ type: 'SET_LOADING' })
     const services = await getServices(searchTerm, page)
 
     dispatch({

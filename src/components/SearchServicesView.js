@@ -1,14 +1,14 @@
 import { Container } from 'react-bootstrap'
 import SearchForm from './SearchForm'
 import ServiceList from './ServiceList'
-import React, { useContext } from 'react'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import Loader from './Loader'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { ApplicationContext } from '../contexts/ApplicationContext'
 
 const SearchServicesView = () => {
-  const { loading } = useContext(ApplicationContext)
+  const { loading } = useSelector(state => state.services)
   return (
     <div>
       <ToastContainer/>

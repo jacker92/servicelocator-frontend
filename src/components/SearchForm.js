@@ -7,7 +7,7 @@ const SearchForm = () => {
   const dispatch = useDispatch()
   const [inputSearchTerm, setInputSearchTerm] = useState('')
 
-  const executeSearch = (e) => {
+  const executeSearch = async (e) => {
     e.preventDefault()
     dispatch(fetchServices(inputSearchTerm))
     setInputSearchTerm('')

@@ -7,7 +7,6 @@ const PaginationLinks = () => {
   const dispatch = useDispatch()
   const { services, searchTerm, activePage } = useSelector(state => state.services)
 
-  // const { services, setServices, searchTerm, setLoading, activePage, setActivePage, setServiceCache } = useContext(ApplicationContext)
   const getServicesFrom = async (page) => {
     dispatch(fetchServicesFromPage(searchTerm, page))
   }
